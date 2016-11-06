@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Home1</title>
+    <link rel="stylesheet" href="css/master.css" media="screen" title="no title">
+  </head>
+  <body>
+
+    <div class="page">
+
+      		<nav>
+      		  <a href="http://www.xpuig.com" class="logo">// Kavan Mevada</a>
+            <a class="menu">
+              <div class="menu-cl"></div>
+            </a>
+      	 </nav>
+
+         <div class="inner">
+           <h1>works</h1>
+           <div class="">
+             <ul>
+       				<li><span class="filters" data-filter="app, card, icon">all</span></li>
+       				<li><span class="filters" data-filter="app">creative kitchen</span></li>
+       				<li><span class="filters" data-filter="card">art installation</span></li>
+       				<li><span class="filters" data-filter="icon">print design</span></li>
+       			</ul>
+       			<div class="grid masonry">
+       				<div class="filter_list grid-item--a module" module_id="1" data-cat="app">app</div>
+       			  <div class="filter_list grid-item--b module" module_id="2" data-cat="icon">icon</div>
+       			  <div class="filter_list grid-item--a module" module_id="3" data-cat="card">card</div>
+       			  <div class="filter_list grid-item--b module" module_id="4" data-cat="app">app</div>
+       			  <div class="filter_list grid-item--b module" module_id="5" data-cat="card">card</div>
+       			  <div class="filter_list grid-item--a module" module_id="6" data-cat="app">app</div>
+       			  <div class="filter_list grid-item--a module" module_id="7" data-cat="card">icon</div>
+       			  <div class="filter_list grid-item--b module" module_id="8" data-cat="icon">icon</div>
+       			  <div class="filter_list grid-item--a module" module_id="9" data-cat="icon">app</div>
+       			  <div class="filter_list grid-item--b module" module_id="10" data-cat="logo">logo</div>
+              <div class="filter_list grid-item--b module" module_id="11" data-cat="icon">icon</div>
+       			  <div class="filter_list grid-item--a module" module_id="12" data-cat="icon">app</div>
+       			</div>
+         </div>
+
+         <footer id="footer" role="contentinfo">
+             <div class="row">
+               <div class="small-12 columns social-links">
+                 <a href="#" target="_blank" class="facebook icon-1x"><i class="fa fa-facebook"></i></a>
+                 <a href="#" target="_blank" class="pinterest icon-1x"><i class="fa fa-pinterest"></i></a>
+                 <a href="#" target="_blank" class="twitter icon-1x"><i class="fa fa-twitter"></i></a>
+                 <a href="#" target="_blank" class="linkedin icon-1x"><i class="fa fa-linkedin"></i></a>
+                 <a href="#" target="_blank" class="instagram icon-1x"><i class="fa fa-instagram"></i></a>
+                 <a href="#" target="_blank" class="tumblr icon-1x"><i class="fa fa-tumblr"></i></a>
+                 <a href="#" target="_blank" class="vk icon-1x"><i class="fa fa-vk"></i></a>
+               </div>
+               <div class="copyright-label">
+                 <p>© 2016 Copyright - Created by Kavan Mevada.</p>
+               </div>
+             </div>
+           </footer>
+
+
+
+    </div>
+    <script src="flex_masonry.2.js"></script>
+		<script type="text/javascript" src="flex_filter.js" ></script>
+    <script>
+    flex_masonry(".masonry");
+    </script>
+
+        <script type="text/javascript">
+        var ele = document.querySelectorAll('.module');
+        var ele_array = [];
+        for (var i = 0; i < ele.length; i++) {
+            ele_array.push({
+                uid: ele[i].getAttribute('module_id'),
+                div: ele[i]
+            });
+        }
+
+        ele_array.sort(function(a, b) {
+          return parseFloat(a.uid) - parseFloat(b.uid);
+        });
+
+        //console.log(ele_array);
+        for (var i = 0; i < ele_array.length; i++) {
+          if ((i % 2) == 0) {
+            ele_array[i].div.style.animationDuration = "1s";
+          }
+          if ((i % 2) != 0) {
+            ele_array[i].div.style.animationDuration = "0.5s";
+          }
+        }
+
+
+        var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
+        var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
+
+        function showRect(elem) {
+          var r = elem.getBoundingClientRect()
+          return { top:r.top, bottom:r.bottom}
+        }
+
+        console.log(ele_array[0].div);
+
+        for (var i = 0; i < ele_array.length; i++) {
+          var kava = (showRect(ele_array[i].div).top+(ele_array[i].div.clientHeight/3));
+          if (kava <= h) {
+            ele_array[i].div.style.animationDuration = "0s";
+            ele_array[i].div.style.opacity = 1;
+          } else {
+            ele_array[i].div.style.opacity = 0;
+          }
+        }
+
+        window.addEventListener('scroll', function() {
+          for (var i = 0; i < ele_array.length; i++) {
+            var kava = (showRect(ele_array[i].div).top+(ele_array[i].div.clientHeight/3));
+            if (kava <= h) {
+              ele_array[i].div.style.opacity = 1;
+              ele_array[i].div.classList.add('come-in');
+            }
+          }
+        })
+
+        </script>
+  </body>
+</html>
